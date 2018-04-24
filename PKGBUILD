@@ -39,6 +39,8 @@ prepare() {
   patch -i $startdir/patches/dwm-columns-6.1.diff
   echo -e "\nApplying scratchpad patch"
   patch -i $startdir/patches/dwm-scratchpad-6.1.diff
+  echo -e "\nApplying attachabove patch"
+  patch -i $startdir/patches/dwm-attachabove-6.1.diff
 }
 
 build() {
