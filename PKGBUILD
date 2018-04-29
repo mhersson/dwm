@@ -25,8 +25,8 @@ md5sums=('f0b6b1093b7207f89c2a90b848c008ec'
 prepare() {
   cd $srcdir/$pkgname-$pkgver
   cp $srcdir/config.h config.h
-  echo -e "\nApplying systray patch"
-  patch -i $startdir/patches/dwm-systray-6.1.diff
+#  echo -e "\nApplying systray patch"
+#  patch -i $startdir/patches/dwm-systray-6.1.diff
   echo -e "\nApplying gaplessgrid patch"
   patch -i $startdir/patches/dwm-gaplessgrid-6.1.diff
   echo -e "\nApplying pertag patch"
