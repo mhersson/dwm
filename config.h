@@ -10,15 +10,16 @@ static const char dmenufont[]       = "monospace:size=10";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#FF5F00";
-static const char selbgcolor[]      = "#FF5F00";
+static const char selbordercolor[]  = "#4863A0";
+static const char selbgcolor[]      = "#4863A0";
 static const char selfgcolor[]      = "#252525";
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-//static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-//static const unsigned int systrayspacing = 2;   /* systray spacing */
-//static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, 0: display systray on the last monitor*/
-//static const int showsystray        = 1;        /* 0 means no systray */
+static const unsigned int gappx     = 12;       /* gap pixel between windows */
+static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, 0: display systray on the last monitor*/
+static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
@@ -33,8 +34,11 @@ static const Rule rules[] = {
     /* class      instance    title       tags mask     isfloating   monitor */
     { "feh",      NULL,       NULL,       0,            1,           -1 },
     { "mpv",      NULL,       NULL,       0,            1,           -1 },
+    { "Skype",    NULL,       NULL,       0,            1,           -1 },
+    { "Spotify",  NULL,       NULL,       0,            1,           -1 },
     { "Pavucontrol", NULL,    NULL,       0,            1,           -1 },
     { "Nm-connection-editor", NULL, NULL, 0,            1,           -1 },
+    { "VirtualBox Manager",   NULL, NULL, 0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -52,8 +56,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
-#define WINKEY Mod4Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
     { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -67,11 +70,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *roficmd[] = { "rofi", "-show", "run", NULL };
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "urxvtc", NULL };
+static const char *termcmd[]  = { "xterm", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "urxvtc", "-title", scratchpadname, "-geometry", "120x34", NULL };
-static const char *screensavercmd[] = { "xlock", "-nolock", "-delay", "40000", "-mode", "bouboule", NULL };
-static const char *lockscreencmd[] = { "xlock", "-delay", "40000", "-mode", "bouboule", NULL };
+static const char *scratchpadcmd[] = { "xterm", "-title", scratchpadname, "-geometry", "120x34", NULL };
 
 #include "movestack.c"
 static Key keys[] = {
@@ -80,8 +81,6 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
     { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
-    { WINKEY,                       XK_l,      spawn,          {.v = screensavercmd } },
-    { WINKEY|ShiftMask,             XK_l,      spawn,          {.v = lockscreencmd } },
     { MODKEY,                       XK_b,      togglebar,      {0} },
     { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
     { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

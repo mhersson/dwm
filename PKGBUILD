@@ -16,7 +16,7 @@ install=dwm.install
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	config.h
 	dwm.desktop
-    startdwm)
+        startdwm)
 md5sums=('f0b6b1093b7207f89c2a90b848c008ec'
          'SKIP'
          '3a0ce822cb8a841465d629728523bc04'
@@ -25,8 +25,12 @@ md5sums=('f0b6b1093b7207f89c2a90b848c008ec'
 prepare() {
   cd $srcdir/$pkgname-$pkgver
   cp $srcdir/config.h config.h
-#  echo -e "\nApplying systray patch"
-#  patch -i $startdir/patches/dwm-systray-6.1.diff
+  echo -e "\nApplying uselessgap patch"
+  patch -i $startdir/patches/dwm-uselessgap-6.1.diff
+#   echo -e "\nApplying hide vacant tags patch"
+#   patch -i $startdir/patches/dwm-hide_vacant_tags-6.1.diff
+  echo -e "\nApplying systray patch"
+  patch -i $startdir/patches/dwm-systray-6.1.diff
   echo -e "\nApplying gaplessgrid patch"
   patch -i $startdir/patches/dwm-gaplessgrid-6.1.diff
   echo -e "\nApplying pertag patch"
