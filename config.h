@@ -1,6 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 #include "gaplessgrid.c"
+#include "movestack.c"
 
 /* appearance */
 static const char *fonts[] = {
@@ -10,14 +11,14 @@ static const char dmenufont[]       = "monospace:size=10";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#4863A0";
-static const char selbgcolor[]      = "#4863A0";
+static const char selbordercolor[]  = "#3394C8";
+static const char selbgcolor[]      = "#286093";
 static const char selfgcolor[]      = "#252525";
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int gappx     = 12;       /* gap pixel between windows */
+static const unsigned int gappx     = 10;       /* gap pixel between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const unsigned int systrayspacing = 3;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, 0: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -72,9 +73,8 @@ static const char *roficmd[] = { "rofi", "-show", "run", NULL };
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "xterm", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "xterm", "-title", scratchpadname, "-geometry", "120x34", NULL };
+static const char *scratchpadcmd[] = { "xterm", "-title", scratchpadname, "-geometry", "80x45", NULL };
 
-#include "movestack.c"
 static Key keys[] = {
     /* modifier                     key        function        argument */
     { MODKEY,                       XK_p,      spawn,          {.v = roficmd } },

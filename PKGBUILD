@@ -25,10 +25,12 @@ md5sums=('f0b6b1093b7207f89c2a90b848c008ec'
 prepare() {
   cd $srcdir/$pkgname-$pkgver
   cp $srcdir/config.h config.h
+  echo -e "\nApplying single window no border patch"
+  patch -i $startdir/patches/dwm-noborder-6.1.diff
   echo -e "\nApplying uselessgap patch"
   patch -i $startdir/patches/dwm-uselessgap-6.1.diff
-#   echo -e "\nApplying hide vacant tags patch"
-#   patch -i $startdir/patches/dwm-hide_vacant_tags-6.1.diff
+  echo -e "\nApplying hide vacant tags patch"
+  patch -i $startdir/patches/dwm-hide_vacant_tags-6.1.diff
   echo -e "\nApplying systray patch"
   patch -i $startdir/patches/dwm-systray-6.1.diff
   echo -e "\nApplying gaplessgrid patch"
@@ -40,7 +42,7 @@ prepare() {
   echo -e "\nApplying rmaster patch"
   patch -i $startdir/patches/dwm-rmaster-6.1.diff
   echo -e "\nApplying columns patch"
-  patch -i $startdir/patches/dwm-columns-6.1.diff
+ patch -i $startdir/patches/dwm-columns-6.1.diff
   echo -e "\nApplying scratchpad patch"
   patch -i $startdir/patches/dwm-scratchpad-6.1.diff
   echo -e "\nApplying attachabove patch"
