@@ -11,9 +11,9 @@ static const char dmenufont[]       = "monospace:size=10";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#3394C8";
-static const char selbgcolor[]      = "#286093";
-static const char selfgcolor[]      = "#252525";
+static const char selbordercolor[]  = "#BA55D3";
+static const char selbgcolor[]      = "#252525";
+static const char selfgcolor[]      = "#BA55D3";
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappx     = 10;       /* gap pixel between windows */
@@ -37,6 +37,7 @@ static const Rule rules[] = {
     { "mpv",      NULL,       NULL,       0,            1,           -1 },
     { "Skype",    NULL,       NULL,       0,            1,           -1 },
     { "Spotify",  NULL,       NULL,       0,            1,           -1 },
+    { "Mailspring",  NULL,    NULL,       0,            1,           -1 },
     { "Pavucontrol", NULL,    NULL,       0,            1,           -1 },
     { "Nm-connection-editor", NULL, NULL, 0,            1,           -1 },
     { "VirtualBox Manager",   NULL, NULL, 0,            1,           -1 },
@@ -71,9 +72,13 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *roficmd[] = { "rofi", "-show", "run", NULL };
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "xterm", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "xterm", "-title", scratchpadname, "-geometry", "80x45", NULL };
+static const char *scratchpadcmd[] = { "xterm", "-title", scratchpadname, "-geometry", "100x45", "-bg", "#0d0f31", NULL };
+static const char *spotify_play[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.PlayPause", NULL};
+static const char *spotify_next[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Next", NULL};
+static const char *spotify_prev[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Previous", NULL};
+
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -92,7 +97,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
     { MODKEY,                       XK_Return, zoom,           {0} },
     { MODKEY,                       XK_Tab,    view,           {0} },
-    { MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+    { MODKEY,                       XK_q,      killclient,     {0} },
     { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
     { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
     { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[2]} },
@@ -116,7 +121,10 @@ static Key keys[] = {
     TAGKEYS(                        XK_7,                      6)
     TAGKEYS(                        XK_8,                      7)
     TAGKEYS(                        XK_9,                      8)
-    { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { MODKEY|ShiftMask,             XK_q,      quit,          {0} },
+    { 0, 0x1008ff14, spawn, {.v = spotify_play} },
+    { 0, 0x1008ff17, spawn, {.v = spotify_next} },
+    { 0, 0x1008ff16, spawn, {.v = spotify_prev} },
 };
 
 /* button definitions */
