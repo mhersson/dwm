@@ -32,8 +32,8 @@ prepare() {
   patch -i $startdir/patches/dwm-systray-6.2.diff
   echo -e "\nApplying attachx patch"
   patch -i $startdir/patches/dwm-attachx-6.2.diff
-  echo -e "\nApplying rotatestack patch"
-  patch -i $startdir/patches/dwm-rotatestack-6.2.diff
+  echo -e "\nApplying movestack patch"
+  patch -i $startdir/patches/dwm-movestack-6.2.diff
 }
 
 build() {
