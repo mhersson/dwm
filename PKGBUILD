@@ -34,6 +34,10 @@ prepare() {
   patch -i $startdir/patches/dwm-attachx-6.2.diff
   echo -e "\nApplying movestack patch"
   patch -i $startdir/patches/dwm-movestack-6.2.diff
+  echo -e "\nApplying scratchpad patch"
+  patch -i $startdir/patches/dwm-scratchpad-6.2.diff
+  echo -e "\nApplying zoomswap patch"
+  patch -i $startdir/patches/dwm-zoomswap-6.2.diff
 }
 
 build() {
