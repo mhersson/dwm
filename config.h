@@ -78,10 +78,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_gray4, NULL };
-static const char *roficmd[]  = { "rofi", "-show", "run", NULL };
+//static const char *roficmd[]  = { "rofi", "-show", "run", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "xterm", "-T", scratchpadname, "-g", "120x34", NULL };
+static const char *xlockcmd[] = {"xlock", "-nolock", "-delay", "40000", "-mode", "fzort", NULL };
 
 static const char *spotify_play[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.PlayPause", NULL};
 static const char *spotify_next[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Next", NULL};
@@ -154,6 +155,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Tab,    rotatelayoutaxis, {.i = 1} },    /* flextile, 1 = master axis */
 	{ MODKEY|ControlMask|ShiftMask, XK_Tab,    rotatelayoutaxis, {.i = 2} },    /* flextile, 2 = stack axis */
 	{ MODKEY|ControlMask,           XK_Return, mirrorlayout,     {0} },         /* flextile, flip master and stack areas */
+	{ Mod1Mask|ControlMask,         XK_Delete, spawn,          {.v = xlockcmd } },   /* start screensaver */
     { 0, 0x1008ff14, spawn, {.v = spotify_play} },
     { 0, 0x1008ff17, spawn, {.v = spotify_next} },
     { 0, 0x1008ff16, spawn, {.v = spotify_prev} },
