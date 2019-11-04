@@ -43,6 +43,7 @@ static const Rule rules[] = {
     { "Pavucontrol", NULL,    NULL,       0,            1,           -1 },
     { "Nm-connection-editor", NULL, NULL, 0,            1,           -1 },
     { "VirtualBox Manager",   NULL, NULL, 0,            1,           -1 },
+    { "Terminator", NULL, "Terminator Preferences", 0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -79,7 +80,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_gray4, NULL };
 //static const char *roficmd[]  = { "rofi", "-show", "run", NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "terminator", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "xterm", "-T", scratchpadname, "-g", "120x34", NULL };
 static const char *xlockcmd[] = {"xlock", "-nolock", "-delay", "40000", "-mode", "fzort", NULL };
