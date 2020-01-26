@@ -1,6 +1,6 @@
 # README
 
-Patched dwm-6.1 build files for Arch Linux
+Patched dwm-6.x build files for Arch Linux
 
 >If compiling for other distributions: There are changes made in
 config.h that are not applied by the patches, but are still needed.
