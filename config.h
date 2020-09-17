@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
@@ -39,15 +39,15 @@ static const Rule rules[] = {
     /* class                            instance    title       tags mask     isfloating   monitor */
     { "feh",                            NULL,       NULL,       0,            1,           -1 },
     { "mpv",                            NULL,       NULL,       0,            1,           -1 },
-    { "Caja",                           NULL,       NULL,       0,            1,           -1 },
-    { "Pluma",                          NULL,       NULL,       0,            1,           -1 },
+    { "Blueberry.py",                   NULL,       NULL,       0,            1,           -1 },
+    { "Zathura",                        NULL,       NULL,       0,            1,           -1 },
     { "Spotify",                        NULL,       NULL,       1 << 8,       1,           -1 },
     { "Pavucontrol",                    NULL,       NULL,       0,            1,           -1 },
     { "Nm-connection-editor",           NULL,       NULL,       0,            1,           -1 },
-    { "Microsoft Teams - Preview",      NULL,       NULL,       1 << 1,       1,           -1 },
+    { "Microsoft Teams - Preview",      NULL,       NULL,       1 << 1,       0,           -1 },
     { "privateinternetaccess",          NULL,       NULL,       0,            1,            1 },
     { "firefox",                        NULL,       NULL,       0,            1,            1 },
-    { "Terminator",                     NULL,       "Terminator Preferences", 0,            1,           -1 },
+    { "Brave-browser",                  NULL,       NULL,       0,            1,            1 },
 };
 
 /* layout(s) */
@@ -93,6 +93,11 @@ static const char *xlockcmd[] = {"xlock", "-nolock", "-delay", "40000", "-mode",
 static const char *spotify_play[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.PlayPause", NULL};
 static const char *spotify_next[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Next", NULL};
 static const char *spotify_prev[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Previous", NULL};
+
+static const char *focus_left[] = {"focusnextwindow", "left", NULL};
+static const char *focus_down[] = {"focusnextwindow", "down", NULL};
+static const char *focus_up[] = {"focusnextwindow", "up", NULL};
+static const char *focus_right[] = {"focusnextwindow", "right", NULL};
 
 #include "movestack.c"
 static Key keys[] = {
@@ -170,6 +175,11 @@ static Key keys[] = {
     { ControlMask,                  XK_F7,     spawn, {.v = spotify_play} },
     { ControlMask,                  XK_F8,     spawn, {.v = spotify_next} },
     { ControlMask,                  XK_F6,     spawn, {.v = spotify_prev} },
+
+    { MODKEY,                       XK_Left,   spawn, {.v = focus_left} },
+    { MODKEY,                       XK_Down,   spawn, {.v = focus_down} },
+    { MODKEY,                       XK_Up,     spawn, {.v = focus_up} },
+    { MODKEY,                       XK_Right,  spawn, {.v = focus_right} },
 
     { 0,                            XK_F12,    spawn, {.v = copyclipboard} },
 };

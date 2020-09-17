@@ -19,7 +19,7 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
     startdwm)
 sha256sums=('97902e2e007aaeaa3c6e3bed1f81785b817b7413947f1db1d3b62b8da4cd110e'
             'SKIP'
-            'bc36426772e1471d6dd8c8aed91f288e16949e3463a9933fee6390ee0ccd3f81'
+            '90dd949befe46ec76c1d989a5bf99f896ac096810e4f720afea81e914b10f9b3'
             'd3ecee9ee2494349e8fdf614bb758eb1f096f188b16edecd075213fb54059eb9' )
 
 prepare() {
