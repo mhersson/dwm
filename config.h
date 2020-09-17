@@ -41,6 +41,7 @@ static const Rule rules[] = {
     { "mpv",                            NULL,       NULL,       0,            1,           -1 },
     { "Blueberry.py",                   NULL,       NULL,       0,            1,           -1 },
     { "Zathura",                        NULL,       NULL,       0,            1,           -1 },
+    { "Virt-manager",                   NULL,       NULL,       0,            1,           -1 },
     { "Spotify",                        NULL,       NULL,       1 << 8,       1,           -1 },
     { "Pavucontrol",                    NULL,       NULL,       0,            1,           -1 },
     { "Nm-connection-editor",           NULL,       NULL,       0,            1,           -1 },
