@@ -42,7 +42,7 @@ static const Rule rules[] = {
     { "Blueberry.py",                   NULL,       NULL,       0,            1,           -1 },
     { "Zathura",                        NULL,       NULL,       0,            1,           -1 },
     { "Virt-manager",                   NULL,       NULL,       0,            1,           -1 },
-    { "Spotify",                        NULL,       NULL,       1 << 8,       1,           -1 },
+    { "Spotify",                        NULL,       NULL,       1 << 8,       0,           -1 },
     { "Pavucontrol",                    NULL,       NULL,       0,            1,           -1 },
     { "Nm-connection-editor",           NULL,       NULL,       0,            1,           -1 },
     { "Microsoft Teams - Preview",      NULL,       NULL,       1 << 1,       0,           -1 },
@@ -86,7 +86,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_gray4, NULL };
 static const char *roficmd[]  = { "rofi", "-show", "run", NULL };
 static const char *copyclipboard[]  = { "/home/morten/Scripts/copyclipboard", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "xterm", "-T", scratchpadname, "-g", "120x34", NULL };
 static const char *xlockcmd[] = {"xlock", "-nolock", "-delay", "40000", "-mode", "fzort", NULL };
@@ -99,6 +99,8 @@ static const char *focus_left[] = {"focusnextwindow", "left", NULL};
 static const char *focus_down[] = {"focusnextwindow", "down", NULL};
 static const char *focus_up[] = {"focusnextwindow", "up", NULL};
 static const char *focus_right[] = {"focusnextwindow", "right", NULL};
+
+static const char *screenshot[] = {"/home/morten/Scripts/screenshot", NULL};
 
 #include "movestack.c"
 static Key keys[] = {
@@ -183,6 +185,7 @@ static Key keys[] = {
     { MODKEY,                       XK_Right,  spawn, {.v = focus_right} },
 
     { 0,                            XK_F12,    spawn, {.v = copyclipboard} },
+    { MODKEY|ShiftMask,             XK_F11,    spawn, {.v = screenshot} },
 };
 
 /* button definitions */
