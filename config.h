@@ -101,6 +101,7 @@ static const char *focus_up[] = {"focusnextwindow", "up", NULL};
 static const char *focus_right[] = {"focusnextwindow", "right", NULL};
 
 static const char *screenshot[] = {"/home/morten/Scripts/screenshot", NULL};
+static const char *toggle_dpms[] = {"/home/morten/Scripts/toggle-dpms", NULL};
 
 #include "movestack.c"
 static Key keys[] = {
@@ -184,8 +185,9 @@ static Key keys[] = {
     { MODKEY,                       XK_Up,     spawn, {.v = focus_up} },
     { MODKEY,                       XK_Right,  spawn, {.v = focus_right} },
 
-    { 0,                            XK_F12,    spawn, {.v = copyclipboard} },
     { MODKEY|ShiftMask,             XK_F11,    spawn, {.v = screenshot} },
+    { MODKEY|ShiftMask,             XK_F12,    spawn, {.v = toggle_dpms} },
+    { 0,                            XK_F12,    spawn, {.v = copyclipboard} },
 };
 
 /* button definitions */
