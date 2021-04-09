@@ -36,19 +36,17 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-    /* class                            instance    title       tags mask     isfloating   monitor */
-    { "feh",                            NULL,       NULL,       0,            1,           -1 },
-    { "mpv",                            NULL,       NULL,       0,            1,           -1 },
-    { "Blueberry.py",                   NULL,       NULL,       0,            1,           -1 },
-    { "Zathura",                        NULL,       NULL,       0,            1,           -1 },
-    { "Virt-manager",                   NULL,       NULL,       0,            1,           -1 },
-    { "Spotify",                        NULL,       NULL,       1 << 8,       0,           -1 },
-    { "Pavucontrol",                    NULL,       NULL,       0,            1,           -1 },
-    { "Nm-connection-editor",           NULL,       NULL,       0,            1,           -1 },
-    { "Microsoft Teams - Preview",      NULL,       NULL,       1 << 1,       0,           -1 },
-    { "privateinternetaccess",          NULL,       NULL,       0,            1,            1 },
-    { "firefox",                        NULL,       NULL,       0,            1,            1 },
-    { "Brave-browser",                  NULL,       NULL,       0,            1,            1 },
+    /* class                            instance    title       tags mask     iscentered   isfloating   monitor */
+    { "feh",                            NULL,       NULL,       0,            1,           1,           -1 },
+    { "mpv",                            NULL,       NULL,       0,            1,           1,           -1 },
+    { "Blueberry.py",                   NULL,       NULL,       0,            1,           1,           -1 },
+    { "Zathura",                        NULL,       NULL,       0,            1,           1,           -1 },
+    { "Virt-manager",                   NULL,       NULL,       0,            1,           1,           -1 },
+    { "Spotify",                        NULL,       NULL,       1 << 8,       1,           1,           -1 },
+    { "Pavucontrol",                    NULL,       NULL,       0,            1,           1,           -1 },
+    { "Nm-connection-editor",           NULL,       NULL,       0,            1,           1,           -1 },
+    { "Microsoft Teams - Preview",      NULL,       NULL,       0,            1,           1,           -1 },
+    { "privateinternetaccess",          NULL,       NULL,       0,            1,           1,            1 },
 };
 
 /* layout(s) */
@@ -84,7 +82,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_gray4, NULL };
-static const char *roficmd[]  = { "rofi", "-show", "run", NULL };
+static const char *roficmd[]  = { "rofi", "-width", "750", "-show", "run", NULL };
 static const char *copyclipboard[]  = { "/home/morten/Scripts/copyclipboard", NULL };
 static const char *termcmd[]  = { "kitty", "--single-instance", NULL };
 static const char scratchpadname[] = "scratchpad";
