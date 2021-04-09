@@ -12,8 +12,9 @@ config.h that are not applied by the patches, but are still needed.
 * dwm-systray-6.2.diff
 * dwm-zoomswap-6.2.diff
 * dwm-flextile-pertag-cfacts-vanitygaps-grid-centered-6.2.diff
+* dwm-center-6.2.diff
 
 ## Configured dependencies
-* alacritty
+* kitty
 * rofi
 * dmenu
