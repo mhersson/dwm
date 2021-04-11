@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+wget https://dl.suckless.org/dwm/dwm-6.2.tar.gz && tar zxf dwm-6.2.tar.gz && \
+(cd dwm-6.2 && cp config.def.h config.h && \
+  patch -i ../patches/dwm-notitle-6.2.diff && \
+  patch -i ../patches/dwm-flextile-pertag-cfacts-vanitygaps-grid-centered-6.2.diff && \
+  patch -i ../patches/dwm-systray-6.2.diff && \
+  patch -i ../patches/dwm-attachx-6.2.diff && \
+  patch -i ../patches/dwm-movestack-6.2.diff && \
+  patch -i ../patches/dwm-scratchpad-6.2.diff && \
+  patch -i ../patches/dwm-zoomswap-6.2.diff && \
+  patch -i ../patches/dwm-center-6.2.diff && \
+  cp ../config.h config.h && make && sudo make install && \
+  sed -i 's/usr\//usr\/local\//' ../dwm.desktop && \
+  sudo cp ../dwm.desktop /usr/share/xsessions/dwm.desktop && \
+  sudo cp ../startdwm /usr/local/bin/startdwm && \
+  sudo chmod 755 /usr/local/bin/startdwm
+)
