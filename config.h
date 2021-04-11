@@ -46,7 +46,9 @@ static const Rule rules[] = {
     { "Pavucontrol",                    NULL,       NULL,       0,            1,           1,           -1 },
     { "Nm-connection-editor",           NULL,       NULL,       0,            1,           1,           -1 },
     { "Microsoft Teams - Preview",      NULL,       NULL,       0,            1,           1,           -1 },
-    { "privateinternetaccess",          NULL,       NULL,       0,            1,           1,            1 },
+    { "privateinternetaccess",          NULL,       NULL,       0,            1,           1,           -1 },
+    { "Chromium-browser",               NULL,       NULL,       0,            1,           1,           -1 },
+    { "Signal",                         NULL,       NULL,       0,            1,           1,           -1 },
 };
 
 /* layout(s) */
@@ -84,7 +86,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_gray4, NULL };
 static const char *roficmd[]  = { "rofi", "-width", "750", "-show", "run", NULL };
 static const char *copyclipboard[]  = { "/home/morten/Scripts/copyclipboard", NULL };
-static const char *termcmd[]  = { "kitty", "--single-instance", NULL };
+static const char *termcmd[]  = { "alacritty",  NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "xterm", "-T", scratchpadname, "-g", "120x34", NULL };
 static const char *xlockcmd[] = {"xlock", "-nolock", "-delay", "40000", "-mode", "fzort", NULL };
@@ -194,7 +196,6 @@ static Button buttons[] = {
     /* click                event mask      button          function        argument */
     { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
     { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-    { ClkWinTitle,          0,              Button2,        zoom,           {0} },
     { ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
     { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
     { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
