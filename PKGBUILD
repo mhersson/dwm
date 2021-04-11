@@ -11,7 +11,7 @@ url="http://dwm.suckless.org"
 arch=('i686' 'x86_64')
 license=('MIT')
 options=(zipman)
-depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 'dmenu')
+depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 'dmenu' 'rofi' 'alacritty')
 install=dwm.install
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	config.h
@@ -26,6 +26,8 @@ prepare() {
   cd "$srcdir/$pkgname-$pkgver"
   cp "$srcdir/config.h" config.h
 
+  echo -e "\nApplying notitle patch"
+  patch -i $startdir/patches/dwm-notitle-6.2.diff
   echo -e "\nApplying flexitile patch"
   patch -i $startdir/patches/dwm-flextile-pertag-cfacts-vanitygaps-grid-centered-6.2.diff
   echo -e "\nApplying systray patch"
@@ -38,6 +40,8 @@ prepare() {
   patch -i $startdir/patches/dwm-scratchpad-6.2.diff
   echo -e "\nApplying zoomswap patch"
   patch -i $startdir/patches/dwm-zoomswap-6.2.diff
+  echo -e "\nApplying center patch"
+  patch -i $startdir/patches/dwm-center-6.2.diff
 }
 
 build() {
