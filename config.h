@@ -85,10 +85,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_gray4, NULL };
 static const char *roficmd[]  = { "rofi", "-width", "750", "-show", "run", NULL };
-static const char *copyclipboard[]  = { "/home/morten/Scripts/copyclipboard", NULL };
 static const char *termcmd[]  = { "alacritty",  NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "xterm", "-T", scratchpadname, "-g", "120x34", NULL };
+static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=100", "-o", "window.dimensions.lines=30", NULL };
 static const char *xlockcmd[] = {"xlock", "-nolock", "-delay", "40000", "-mode", "fzort", NULL };
 
 static const char *spotify_play[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.PlayPause", NULL};
@@ -187,7 +186,6 @@ static Key keys[] = {
 
     { MODKEY|ShiftMask,             XK_F11,    spawn, {.v = screenshot} },
     { MODKEY|ShiftMask,             XK_F12,    spawn, {.v = toggle_dpms} },
-    { 0,                            XK_F12,    spawn, {.v = copyclipboard} },
 };
 
 /* button definitions */
