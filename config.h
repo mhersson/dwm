@@ -1,10 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 20;       /* vert inner gap between windows */
+static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 15;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
@@ -21,7 +21,7 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#cc241d";
+static const char col_cyan[]        = "#ff9940";
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
     [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -41,13 +41,10 @@ static const Rule rules[] = {
     { "mpv",                            NULL,       NULL,       0,            1,           1,           -1 },
     { "Blueberry.py",                   NULL,       NULL,       0,            1,           1,           -1 },
     { "Zathura",                        NULL,       NULL,       0,            1,           1,           -1 },
-    { "Virt-manager",                   NULL,       NULL,       0,            1,           1,           -1 },
+    { "Remove-viewer",                  NULL,       NULL,       0,            1,           1,           -1 },
     { "Spotify",                        NULL,       NULL,       1 << 8,       1,           1,           -1 },
     { "Pavucontrol",                    NULL,       NULL,       0,            1,           1,           -1 },
     { "Nm-connection-editor",           NULL,       NULL,       0,            1,           1,           -1 },
-    { "Microsoft Teams - Preview",      NULL,       NULL,       0,            1,           1,           -1 },
-    { "privateinternetaccess",          NULL,       NULL,       0,            1,           1,           -1 },
-    { "Chromium-browser",               NULL,       NULL,       0,            1,           1,           -1 },
     { "Signal",                         NULL,       NULL,       0,            1,           1,           -1 },
 };
 
@@ -84,7 +81,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_gray4, NULL };
-static const char *roficmd[]  = { "rofi", "-width", "750", "-show", "run", NULL };
+static const char *roficmd[]  = { "rofi", "-width", "750", "-show", "drun", NULL };
 static const char *termcmd[]  = { "alacritty",  NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=100", "-o", "window.dimensions.lines=30", NULL };
