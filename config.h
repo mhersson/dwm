@@ -39,9 +39,9 @@ static const Rule rules[] = {
     /* class                            instance    title       tags mask     iscentered   isfloating   monitor */
     { "feh",                            NULL,       NULL,       0,            1,           1,           -1 },
     { "mpv",                            NULL,       NULL,       0,            1,           1,           -1 },
-    { "Blueberry.py",                   NULL,       NULL,       0,            1,           1,           -1 },
+    { "Blueman-manager",                NULL,       NULL,       0,            1,           1,           -1 },
     { "Zathura",                        NULL,       NULL,       0,            1,           1,           -1 },
-    { "Remove-viewer",                  NULL,       NULL,       0,            1,           1,           -1 },
+    { "Remote-viewer",                  NULL,       NULL,       0,            1,           1,           -1 },
     { "Spotify",                        NULL,       NULL,       1 << 8,       1,           1,           -1 },
     { "Pavucontrol",                    NULL,       NULL,       0,            1,           1,           -1 },
     { "Nm-connection-editor",           NULL,       NULL,       0,            1,           1,           -1 },
@@ -81,15 +81,15 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_gray4, NULL };
-static const char *roficmd[]  = { "rofi", "-width", "750", "-show", "drun", NULL };
-static const char *termcmd[]  = { "alacritty",  NULL };
+static const char *roficmd[]  = { "rofi", "-show", "drun", NULL };
+static const char *termcmd[]  = { "kitty",  NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=100", "-o", "window.dimensions.lines=30", NULL };
+static const char *scratchpadcmd[] = { "kitty", "--title", scratchpadname, NULL };
 static const char *xlockcmd[] = {"xlock", "-nolock", "-delay", "40000", "-mode", "fzort", NULL };
 
-static const char *spotify_play[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.PlayPause", NULL};
-static const char *spotify_next[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Next", NULL};
-static const char *spotify_prev[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Previous", NULL};
+static const char *spotify_play[] = {"playerctl", "play-pause", NULL};
+static const char *spotify_next[] = {"playerctl", "next", NULL};
+static const char *spotify_prev[] = {"playerctl", "previous", NULL};
 
 static const char *focus_left[] = {"focusnextwindow", "left", NULL};
 static const char *focus_down[] = {"focusnextwindow", "down", NULL};
