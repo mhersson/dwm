@@ -11,7 +11,7 @@
 - pertag
 - zoomswap
 
-> Some of the patches are modified from their originals to they play nice with
+> Some of the patches are modified from their originals so they play nice with
 > each other, and they must be applied in the given order.
 
 ## Configured dependencies
