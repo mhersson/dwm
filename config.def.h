@@ -31,20 +31,20 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-    /* class                            instance    title       tags mask     isfloating   monitor */
-    { "feh",                            NULL,       NULL,       0,            1,           -1 },
-    { "mpv",                            NULL,       NULL,       0,            1,           -1 },
-    { "Blueman-manager",                NULL,       NULL,       0,            1,           -1 },
-    { "Blueberry.py",                   NULL,       NULL,       0,            1,           -1 },
-    { "Zathura",                        NULL,       NULL,       0,            1,           -1 },
-    { "Remote-viewer",                  NULL,       NULL,       0,            1,           -1 },
-    { "Spotify",                        NULL,       NULL,       0,            1,           -1 },
-    { "Pavucontrol",                    NULL,       NULL,       0,            1,           -1 },
-    { "Nm-connection-editor",           NULL,       NULL,       0,            1,           -1 },
-    { "Signal",                         NULL,       NULL,       0,            1,           -1 },
-    { "Brave-browser",                  NULL,       NULL,       0,            1,           -1 },
-    { "Firefox",        NULL,       "Firefox Preferences",      0,            1,           -1 },
-    { "Slack",  NULL, "Slack - #squad-openshift - Huddle",      0,            1,           -1 },
+    /* class                            instance    title       tags mask     iscentered   isfloating   monitor */
+    { "feh",                            NULL,       NULL,       0,            1,           1,           -1 },
+    { "mpv",                            NULL,       NULL,       0,            1,           1,           -1 },
+    { "Blueman-manager",                NULL,       NULL,       0,            1,           1,           -1 },
+    { "Blueberry.py",                   NULL,       NULL,       0,            1,           1,           -1 },
+    { "Zathura",                        NULL,       NULL,       0,            1,           1,           -1 },
+    { "Remote-viewer",                  NULL,       NULL,       0,            1,           1,           -1 },
+    { "Spotify",                        NULL,       NULL,       0,            1,           1,           -1 },
+    { "Pavucontrol",                    NULL,       NULL,       0,            1,           1,           -1 },
+    { "Nm-connection-editor",           NULL,       NULL,       0,            1,           1,           -1 },
+    { "Signal",                         NULL,       NULL,       0,            1,           1,           -1 },
+    { "Brave-browser",                  NULL,       NULL,       0,            1,           1,           -1 },
+    { "Firefox",        NULL,       "Firefox Preferences",      0,            1,           1,           -1 },
+    { "Slack",  NULL, "Slack - #squad-openshift - Huddle",      0,            1,           1,           -1 },
 };
 
 #include "centeredmaster.c"
