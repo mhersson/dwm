@@ -11,6 +11,7 @@ wget https://dl.suckless.org/dwm/dwm-6.4.tar.gz && tar zxf dwm-6.4.tar.gz \
       && patch -i ../patches/movestack-6.4.diff \
       && patch -i ../patches/nocolortitle-6.4.diff \
       && patch -i ../patches/center-6.4.diff \
+      && patch -i ../patches/pertag-6.4.diff \
       && cp ../config.def.h config.h && make && sudo make install \
       && sed -i 's/usr\/bin\//usr\/local\/bin\//' ../dwm.desktop \
         sudo cp ../dwm.desktop /usr/share/xsessions/dwm.desktop \
