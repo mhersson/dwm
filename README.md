@@ -18,3 +18,12 @@
 
 - kitty
 - rofi
+
+## First install
+
+1. Clone repo
+2. Run `bash patch-and-install`
+
+## Rebuilding after making configuration changes
+
+- Run `bash build-and-install`
