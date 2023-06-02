@@ -6,9 +6,10 @@
 - scratchpad
 - centeredmaster
 - movestack
-- nocolortitle
+- centertitle
 - center
 - pertag
+- zoomswap
 
 > Some of the patches are modified from their originals to they play nice with
 > each other, and they must be applied in the given order.
