@@ -18,4 +18,3 @@
 
 - kitty
 - rofi
-- dmenu

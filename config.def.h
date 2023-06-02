@@ -75,12 +75,10 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *roficmd[]  = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "kitty",  NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "kitty", "--title", scratchpadname, NULL };
-static const char *xlockcmd[] = {"xlock", "-nolock", "-delay", "40000", "-mode", "fzort", NULL };
 
 static const char *spotify_play[] = {"playerctl", "play-pause", NULL};
 static const char *spotify_next[] = {"playerctl", "next", NULL};
