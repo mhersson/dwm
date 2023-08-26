@@ -2,19 +2,26 @@
 
 set -e
 
-wget https://dl.suckless.org/dwm/dwm-6.4.tar.gz && tar zxf dwm-6.4.tar.gz &&
-  (
-    cd dwm-6.4 &&
-      patch -i ../patches/systray-6.4.diff &&
-      patch -i ../patches/scratchpad-6.4.diff &&
-      patch -i ../patches/centeredmaster-6.4.diff &&
-      patch -i ../patches/movestack-6.4.diff &&
-      patch -i ../patches/centertitle-6.4.diff &&
-      patch -i ../patches/center-6.4.diff &&
-      patch -i ../patches/pertag-6.4.diff &&
-      patch -i ../patches/zoomswap-6.4.diff &&
-      cp ../config.def.h config.h && make && sudo make install &&
-      sudo cp ../dwm.desktop /usr/share/xsessions/dwm.desktop &&
-      sudo cp ../startdwm /usr/local/bin/startdwm &&
-      sudo chmod 755 /usr/local/bin/startdwm
+wget https://dl.suckless.org/dwm/dwm-6.4.tar.gz && tar zxf dwm-6.4.tar.gz \
+  && (
+    cd dwm-6.4 \
+      && patch -i ../patches/systray-6.4.diff \
+      && patch -i ../patches/scratchpad-6.4.diff \
+      && patch -i ../patches/centeredmaster-6.4.diff \
+      && patch -i ../patches/movestack-6.4.diff \
+      && patch -i ../patches/centertitle-6.4.diff \
+      && patch -i ../patches/center-6.4.diff \
+      && patch -i ../patches/pertag-6.4.diff \
+      && patch -i ../patches/zoomswap-6.4.diff \
+      && patch -i ../patches/attachbelow-6.4.diff \
+      && cp ../config.def.h config.h && make && sudo make install \
+      && sudo cp ../dwm.desktop /usr/share/xsessions/dwm.desktop \
+      && sudo cp ../scripts/startdwm /usr/local/bin/startdwm \
+      && sudo chmod 755 /usr/local/bin/startdwm \
+      && sudo cp ../scripts/toggle-dpms /usr/local/bin/toggle-dpms \
+      && sudo chmod 755 /usr/local/bin/toggle-dpms \
+      && sudo cp ../scripts/screenshot /usr/local/bin/screenshot \
+      && sudo chmod 755 /usr/local/bin/screenshot \
+      && sudo cp ../scripts/virtmon /usr/local/bin/virtmon \
+      && sudo chmod 755 /usr/local/bin/virtmon
   )
