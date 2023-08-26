@@ -24,7 +24,7 @@ Index: dwm_patches/dwm/centeredmaster.c
 +
 +	if (n > m->nmaster) {
 +		/* go mfact box in the center if more than nmaster clients */
-+		mw = m->nmaster ? m->ww * 0.33 : 0;
++		mw = m->nmaster ? m->ww * m->mfact : 0;
 +		tw = m->ww - mw;
 +
 +		if (n - m->nmaster > 1) {
