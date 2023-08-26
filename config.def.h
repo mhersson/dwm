@@ -84,8 +84,10 @@ static const char *spotify_play[] = {"playerctl", "play-pause", NULL};
 static const char *spotify_next[] = {"playerctl", "next", NULL};
 static const char *spotify_prev[] = {"playerctl", "previous", NULL};
 
-static const char *screenshot[] = {"/home/morten/Scripts/screenshot", NULL};
-static const char *toggle_dpms[] = {"/home/morten/Scripts/toggle-dpms", NULL};
+static const char *screenshot[] = {"screenshot", NULL};
+static const char *screenshot_to_file[] = {"screenshot", "save_to_file", NULL};
+static const char *toggle_dpms[] = {"toggle-dpms", NULL};
+static const char *toggle_virtmon[] = {"virtmon", "25,75", NULL};
 
 #include "movestack.c"
 static const Key keys[] = {
@@ -133,7 +135,9 @@ static const Key keys[] = {
 	{ 0, 0x1008ff16, spawn, {.v = spotify_prev} },
 
 	{ MODKEY|ShiftMask,             XK_F11,    spawn, {.v = screenshot} },
+  { MODKEY,                       XK_F11,    spawn, {.v = screenshot_to_file} },
 	{ MODKEY|ShiftMask,             XK_F12,    spawn, {.v = toggle_dpms} },
+	{ MODKEY,                       XK_F12,    spawn, {.v = toggle_virtmon} },
 };
 
 /* button definitions */

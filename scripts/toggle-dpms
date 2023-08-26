@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DPMS=$( xset -q | grep "DPMS is" | cut -d ' ' -f 5 )
+
+[[ "${DPMS}" == "Enabled" ]] && xset s off -dpms || xset s on +dpms
+
+if [ "${XDG_SESSION_DESKTOP}" == "dwm" ]; then
+  DPMS=$( xset -q | grep "DPMS is" | cut -d ' ' -f 5 )
+  if [ "${DPMS}" = "Enabled" ]; then
+    xsetroot -name "DPMS ON | $( date +"%A %F %R" )"
+  else
+    xsetroot -name "DPMS OFF | $( date +"%A %F %R" )"
+  fi
+fi

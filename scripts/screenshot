@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+if [ "$1" == "save_to_file" ];then
+  file="screenshot-$(date +%Y%m%d%H%M%S).png"
+  maim -s ~/Downloads/"${file}"
+else
+  maim -s | xclip -selection clipboard -t image/png
+fi
