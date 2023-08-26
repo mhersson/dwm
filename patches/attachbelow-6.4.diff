@@ -1,0 +1,80 @@
+--- config.def.h.orig	2023-08-24 14:29:13.716476620 +0200
++++ config.def.h	2023-08-24 14:29:50.026978494 +0200
+@@ -54,6 +54,7 @@ static const float mfact     = 0.5; /* f
+ static const int nmaster     = 1;    /* number of clients in master area */
+ static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
++static const int attachbelow = 1;    /* 1 means attach after the currently active window */
+ 
+ static const Layout layouts[] = {
+ 	/* symbol     arrange function */
+--- dwm.c.orig	2023-08-23 21:25:39.648333309 +0200
++++ dwm.c	2023-08-24 14:28:17.672368605 +0200
+@@ -171,6 +171,7 @@ static int applysizehints(Client *c, int
+ static void arrange(Monitor *m);
+ static void arrangemon(Monitor *m);
+ static void attach(Client *c);
++static void attachBelow(Client *c);
+ static void attachstack(Client *c);
+ static void buttonpress(XEvent *e);
+ static void centeredmaster(Monitor *m);
+@@ -460,6 +461,21 @@ attach(Client *c)
+ 	c->next = c->mon->clients;
+ 	c->mon->clients = c;
+ }
++void
++attachBelow(Client *c)
++{
++	//If there is nothing on the monitor or the selected client is floating, attach as normal
++	if(c->mon->sel == NULL || c->mon->sel == c || c->mon->sel->isfloating) {
++		attach(c);
++		return;
++	}
++
++	//Set the new client's next property to the same as the currently selected clients next
++	c->next = c->mon->sel->next;
++	//Set the currently selected clients next property to the new client
++	c->mon->sel->next = c;
++
++}
+ 
+ void
+ attachstack(Client *c)
+@@ -1244,7 +1260,10 @@ manage(Window w, XWindowAttributes *wa)
+ 		c->isfloating = c->oldstate = trans != None || c->isfixed;
+ 	if (c->isfloating)
+ 		XRaiseWindow(dpy, c->win);
+-	attach(c);
++	if( attachbelow )
++		attachBelow(c);
++	else
++		attach(c);
+ 	attachstack(c);
+ 	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,
+ 		(unsigned char *) &(c->win), 1);
+@@ -1649,7 +1668,10 @@ sendmon(Client *c, Monitor *m)
+ 	detachstack(c);
+ 	c->mon = m;
+ 	c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
+-	attach(c);
++	if( attachbelow )
++		attachBelow(c);
++	else
++		attach(c);
+ 	attachstack(c);
+ 	focus(NULL);
+ 	arrange(NULL);
+@@ -2218,8 +2240,11 @@ updategeom(void)
+ 				m->clients = c->next;
+ 				detachstack(c);
+ 				c->mon = mons;
+-				attach(c);
+-				attachstack(c);
++        if( attachbelow )
++          attachBelow(c);
++        else
++          attach(c);
++        attachstack(c);
+ 			}
+ 			if (m == selmon)
+ 				selmon = mons;
