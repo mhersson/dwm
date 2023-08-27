@@ -1,0 +1,87 @@
+--- config.def.h.orig	2023-08-25 16:40:27.252301190 +0200
++++ config.def.h	2023-08-27 11:11:19.281450754 +0200
+@@ -8,6 +8,7 @@ static const unsigned int systrayonleft
+ static const unsigned int systrayspacing = 2;   /* systray spacing */
+ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+ static const int showsystray        = 1;        /* 0 means no systray */
++static const int rmaster            = 1;        /* 1 means master-area is initially on the right */
+ static const int showbar            = 1;        /* 0 means no bar */
+ static const int topbar             = 1;        /* 0 means bottom bar */
+ static const char *fonts[]          = { "monospace:size=10" };
+@@ -94,6 +95,7 @@ static const Key keys[] = {
+ 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} }, // floating
+ 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
++	{ MODKEY,                       XK_r,      togglermaster,  {0} },
+ 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+ 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+ 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+--- dwm.c.orig	2023-08-25 16:40:27.252301190 +0200
++++ dwm.c	2023-08-27 11:09:36.736791882 +0200
+@@ -138,6 +138,7 @@ struct Monitor {
+ 	unsigned int seltags;
+ 	unsigned int sellt;
+ 	unsigned int tagset[2];
++	int rmaster;
+ 	int showbar;
+ 	int topbar;
+ 	Client *clients;
+@@ -247,6 +248,7 @@ static void togglefloating(const Arg *ar
+ static void togglescratch(const Arg *arg);
+ static void toggletag(const Arg *arg);
+ static void toggleview(const Arg *arg);
++static void togglermaster(const Arg *arg);
+ static void unfocus(Client *c, int setfocus);
+ static void unmanage(Client *c, int destroyed);
+ static void unmapnotify(XEvent *e);
+@@ -765,6 +767,7 @@ createmon(void)
+ 	m->tagset[0] = m->tagset[1] = 1;
+ 	m->mfact = mfact;
+ 	m->nmaster = nmaster;
++	m->rmaster = rmaster;
+ 	m->showbar = showbar;
+ 	m->topbar = topbar;
+ 	m->lt[0] = &layouts[0];
+@@ -1951,18 +1954,22 @@ tile(Monitor *m)
+ 		return;
+ 
+ 	if (n > m->nmaster)
+-		mw = m->nmaster ? m->ww * m->mfact : 0;
++		mw = m->nmaster
++			? m->ww * (m->rmaster ? 1.0 - m->mfact : m->mfact)
++			: 0;
+ 	else
+ 		mw = m->ww;
+ 	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+ 		if (i < m->nmaster) {
+ 			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
+-			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
++			resize(c, m->rmaster ? m->wx + m->ww - mw : m->wx,
++			      m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
+ 			if (my + HEIGHT(c) < m->wh)
+ 				my += HEIGHT(c);
+ 		} else {
+ 			h = (m->wh - ty) / (n - i);
+-			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
++			resize(c, m->rmaster ? m->wx : m->wx + mw, m->wy + ty,
++			      m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
+ 			if (ty + HEIGHT(c) < m->wh)
+ 				ty += HEIGHT(c);
+ 		}
+@@ -2025,6 +2032,16 @@ togglescratch(const Arg *arg)
+ }
+ 
+ void
++togglermaster(const Arg *arg)
++{
++	selmon->rmaster = !selmon->rmaster;
++	/* now mfact represents the left factor */
++	selmon->mfact = 1.0 - selmon->mfact;
++	if (selmon->lt[selmon->sellt]->arrange)
++		arrange(selmon);
++}
++
++void
+ toggletag(const Arg *arg)
+ {
+ 	unsigned int newtags;

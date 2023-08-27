@@ -10,6 +10,8 @@
 - center
 - pertag
 - zoomswap
+- attachbelow
+- rmaster
 
 > Some of the patches are modified from their originals so they play nice with
 > each other, and they must be applied in the given order.
