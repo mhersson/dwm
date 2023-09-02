@@ -53,8 +53,8 @@ static const int attachbelow = 1;    /* 1 means attach after the currently activ
 
 static const Layout layouts[] = {
   /* symbol     arrange function */
-  { "=M=",      centeredmaster },             /* Master is middle, slaves on sides */
   { "[]=",      tile },                       /* Master on left, slaves on right */
+  { "=M=",      centeredmaster },             /* Master is middle, slaves on sides */
   { "[M]",      monocle },                    /* All windows on top of each other */
   { "><>",      NULL },    /* no layout function means floating behavior */
 };
@@ -103,8 +103,8 @@ static const Key keys[] = {
   { MODKEY,                       XK_Return, zoom,           {0} },
   { MODKEY,                       XK_Tab,    view,           {0} },
   { MODKEY,                       XK_q,      killclient,     {0} },
-  { MODKEY,                       XK_c,      setlayout,      {.v = &layouts[0]} }, // centeredmaster
-  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} }, // tile
+  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} }, // tile
+  { MODKEY,                       XK_c,      setlayout,      {.v = &layouts[1]} }, // centeredmaster
   { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} }, // monocle
   { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} }, // floating
   { MODKEY,                       XK_space,  setlayout,      {0} },
