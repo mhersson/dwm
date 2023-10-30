@@ -72,7 +72,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *roficmd[]  = { "rofi", "-show", "drun", NULL };
-static const char *termcmd[]  = { "kitty",  NULL };
+static const char *termcmd[]  = { "kitty", "--single-instance", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "kitty", "--title", scratchpadname, NULL };
 
@@ -98,8 +98,8 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,             XK_j,      movestack,      {.i = -1 } },
   { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
   { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-  { MODKEY,                       XK_h,      setmfact,       {.f = -0.02} },
-  { MODKEY,                       XK_l,      setmfact,       {.f = +0.02} },
+  { MODKEY,                       XK_h,      setmfact,       {.f = -0.01} },
+  { MODKEY,                       XK_l,      setmfact,       {.f = +0.01} },
   { MODKEY,                       XK_Return, zoom,           {0} },
   { MODKEY,                       XK_Tab,    view,           {0} },
   { MODKEY,                       XK_q,      killclient,     {0} },
